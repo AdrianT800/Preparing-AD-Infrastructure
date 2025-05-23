@@ -1,1 +1,1 @@
-# Preparing-AD-Infrastructure
+# Preparing Active Directory Infrastructure
