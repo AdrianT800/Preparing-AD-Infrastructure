@@ -1,7 +1,7 @@
 ![1035255](https://github.com/user-attachments/assets/7cdae74a-7836-4365-af4e-737124531edf)
 
 # Preparing Active Directory Infrastructure
-This tutorial outlines the post-install configuration of the open-source help desk ticketing system osTicket.<br />
+This guide outlines the post-install configuration of the open-source help desk ticketing system osTicket.<br />
 
 
 <h2>Video Demonstration</h2>
@@ -10,29 +10,35 @@ This tutorial outlines the post-install configuration of the open-source help de
 
 <h2>Environments and Technologies Used</h2>
 
-- Microsoft Azure (Virtual Machines/Computer)
+- Microsoft Azure (Resources Group, Virtual Machines/Computer, Virtual Machines/Window Server, Virtual Network and Subnet)
 - Remote Desktop
-- Internet Information Services (IIS)
+- Powershell
+- Command Prompt
+- Windows Defenders Firewall
 
 <h2>Operating Systems Used </h2>
 
-- Windows 10</b> (21H2)
+- Windows 10 (Pro, version 22H2 - x64 Gen2)
+- Windows Server 2022 Datacenter: (Azure Edition - x64 Gen2)
 
-<h2>Post-Install Configuration Objectives</h2>
+<h2>Preparing Active Directory Infrastructure Objectives</h2>
 
-- Item 1
-- Item 2
-- Item 3
-- Item 4
-- Item 5
+- Step 1: Set Up the Domain Controller in Azure
+- Step 2: Set Domain Controller’s (DC-1) NIC Private IP address to be static
+- Step 3: Disable Windows Firewall (for testing connectivity) in DC-1
+- Step 4: Setup Client-1 in Azure
+- Step 5: Set Domain Controller’s NIC Private IP address to be static in client-1
 
-<h2>Configuration Steps</h2>
+<h2>Infrastructure Steps</h2>
 
+Step 1: Set Up the Domain Controller in Azure
 <p>
 <img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Begin by logging into your Microsoft Azure account. If you don’t have one, create a new account. Once logged in, you’ll need to create a resource group, a virtual network with a subnet, and two virtual
+machines—in that order. It’s strongly recommended that all resources be created in the same Azure region to ensure compafibility and performance. Start by creating a resource group named labtest. After
+naming it, click Review + Create, then Create. It’s crucial that both VMs, the virtual network, and the subnet are placed within this resource group.
 </p>
 <br />
 
@@ -40,7 +46,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 <img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Next, create a virtual network and subnet named Acfive-Directory-VNet. After putting the name, click Review + Create.
 </p>
 <br />
 
@@ -48,6 +54,86 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 <img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Now, create your first virtual machine, which will serve as the domain controller. Name this VM DC-1.
+</p>
+<br />
+
+<p>
+<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+<p>
+Under the Image option, select Windows Server 2022 Datacenter: Azure Edifion – x64 Gen2, and for the Size, choose Standard_D2s_v3 (2 vCPUs, 8 GiB memory). These specificafions are essenfial for proper domain controller funcfionality. Use the following credenfials: Username: labdemo, Password: Vmdemo12345$.
+</p>
+
+<p>
+<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+<p>
+In the Networking section, ensure the VM is connected to the Acfive-Directory-VNet. Then click Review + Create, and finally Create.
+</p>
+
+
+Step 2: Set Domain Controller’s (DC-1) NIC Private IP address to be static
+<p>
+<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+<p>
+Once the DC-1 VM is deployed, configure its network interface to use a stafic private IP address. To do this, navigate to the VM in the Azure portal, click on Networking, then select the Network Interface. Under IP Configurafions, change the private IP allocafion from Dynamic to Stafic, and save the changes.
+</p>
+<br />
+
+
+Step 3: Disable Windows Firewall (for testing connectivity) in DC-1
+<p>
+<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+<p>
+Afterward, log into the DC-1 VM using the credenfials provided. For tesfing connecfivity, disable the Windows Firewall. Open the Run dialog (right-click the Start menu and select Run), type wf.msc, and press Enter. In the Windows Defender Firewall seftings, turn off the firewall for the Domain, Private, and Public profiles, then click Apply.
+</p>
+<br />
+
+
+Step 4: Setup Client-1 in Azure
+<p>
+<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+<p>
+Return to the Azure portal and begin creafing your second VM that will serve as the client machine. This VM will need to be configured to use the domain controller’s private IP address as its DNS server. Name the VM Client-1.and under the image selecfion, choose Windows 10 Pro, version 22H2 – x64 Gen2. For the size, select Standard_D2s_v3 (2 vCPUs, 8 GiB memory), which is
+essenfial for compafibility and performance. Use the following credenfials: Username: labdemo, Password: Vmdemo12345$.
+</p>
+<br />
+
+<p>
+<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+<p>
+ In the networking section, ensure that Active-Directory-VNet is selected as the virtual network. Once all seftings are configured, click Review + Create, then Create.
+</p>
+<br />
+
+
+Step 5: Set Domain Controller’s NIC Private IP address to be static in client-1
+<p>
+<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+<p>
+After the VM is deployed, configure its DNS seftings to point to the domain controller (DC-1). First, go to the DC-1 VM and copy its private IP address from the Overview secfion. Then, navigate to Client-1, go to its Network Seftings, and click on the Network Interface. Under DNS Servers, select Custom, enter DC-1’s private IP address, and save the changes.
+</p>
+<br />
+
+<p>
+<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+<p>
+Restart Client-1 from the Azure portal to apply the configurafion.
+</p>
+<br />
+
+
+<p>
+<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+<p>
+After the restart, log into Client-1 using the local admin credenfials. Open PowerShell from the search bar and test connecfivity by pinging DC-1’s private IP address (e.g., ping 10.0.0.4). To confirm that the DNS seftings are correctly applied, run the command ipconfig /all in PowerShell. The output should display DC-1’s private IP address listed under DNS Servers, confirming that the client is properly configured to communicate with the domain controller.
 </p>
 <br />
