@@ -1,7 +1,10 @@
 ![1035255](https://github.com/user-attachments/assets/7cdae74a-7836-4365-af4e-737124531edf)
 
 # Preparing Active Directory Infrastructure
-This guide outlines the post-install configuration of the open-source help desk ticketing system osTicket.<br />
+This guide provides an overview of the process for setting up a resource group, a virtual network, and two virtual machines (VMs). One VM will be configured to run Windows Server, while the other will operate on Windows 10. The Windows 10 VM will serve as a client that joins the domain, allowing us to log in using domain user accounts. To achieve this, the client (Windows 10 VM) must be configured to use the Domain Controller (Windows Server VM) as its DNS server. This requires setting the DNS IP address on the client’s network interface card to match the IP address of the Domain Controller.
+
+
+<br />
 
 
 <h2>Video Demonstration</h2>
