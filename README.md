@@ -75,7 +75,7 @@ In the Networking section, ensure the VM is connected to the Acfive-Directory-VN
 
 Step 2: Set Domain Controller’s (DC-1) NIC Private IP address to be static
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/1u207Y6.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
 Once the DC-1 VM is deployed, configure its network interface to use a stafic private IP address. To do this, navigate to the VM in the Azure portal, click on Networking, then select the Network Interface. Under IP Configurafions, change the private IP allocafion from Dynamic to Stafic, and save the changes.
@@ -85,26 +85,33 @@ Once the DC-1 VM is deployed, configure its network interface to use a stafic pr
 
 Step 3: Disable Windows Firewall (for testing connectivity) in DC-1
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/trOqniX.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-Afterward, log into the DC-1 VM using the credenfials provided. For tesfing connecfivity, disable the Windows Firewall. Open the Run dialog (right-click the Start menu and select Run), type wf.msc, and press Enter. In the Windows Defender Firewall seftings, turn off the firewall for the Domain, Private, and Public profiles, then click Apply.
+Afterward, log into the DC-1 VM using the credenfials provided. For testing connectivity, disable the Windows Firewall. Open the Run dialog (right-click the Start menu and select Run), type: "wf.msc", and press Enter. In the Windows Defender Firewall seftings, turn off the firewall for the Domain, Private, and Public profiles, then click Apply.
 </p>
 <br />
 
 
 Step 4: Setup Client-1 in Azure
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/oZ89ukA.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-Return to the Azure portal and begin creafing your second VM that will serve as the client machine. This VM will need to be configured to use the domain controller’s private IP address as its DNS server. Name the VM Client-1.and under the image selecfion, choose Windows 10 Pro, version 22H2 – x64 Gen2. For the size, select Standard_D2s_v3 (2 vCPUs, 8 GiB memory), which is
-essenfial for compafibility and performance. Use the following credenfials: Username: labdemo, Password: Vmdemo12345$.
+Return to the Azure portal and begin creafing your second VM that will serve as the client machine. This VM will need to be configured to use the domain controller’s private IP address as its DNS server. Name the VM :Client-1". 
 </p>
 <br />
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/Hd2QLkP.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+<p>
+ Under the image selecfion, choose Windows 10 Pro, version 22H2 – x64 Gen2. For the size, select Standard_D2s_v3 (2 vCPUs, 8 GiB memory), which is essenfial for compafibility and performance. Use the following credenfials: Username: labdemo, Password: Vmdemo12345$.
+</p>
+<br />
+
+<p>
+<img src="https://i.imgur.com/xB3HwoM.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
  In the networking section, ensure that Active-Directory-VNet is selected as the virtual network. Once all seftings are configured, click Review + Create, then Create.
@@ -114,15 +121,15 @@ essenfial for compafibility and performance. Use the following credenfials: User
 
 Step 5: Set Domain Controller’s NIC Private IP address to be static in client-1
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/Npyf2T4.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-After the VM is deployed, configure its DNS seftings to point to the domain controller (DC-1). First, go to the DC-1 VM and copy its private IP address from the Overview secfion. Then, navigate to Client-1, go to its Network Seftings, and click on the Network Interface. Under DNS Servers, select Custom, enter DC-1’s private IP address, and save the changes.
+After the VM is deployed, configure its DNS seftings to point to the domain controller (DC-1). First, go to the DC-1 VM and copy its private IP address from the Overview section. Then, navigate to Client-1, go to its Network Seftings, and click on the Network Interface. Under DNS Servers, select Custom, enter DC-1’s private IP address, and save the changes.
 </p>
 <br />
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/uh0cmqn.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
 Restart Client-1 from the Azure portal to apply the configurafion.
@@ -131,7 +138,7 @@ Restart Client-1 from the Azure portal to apply the configurafion.
 
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/Pns8SEG.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
 After the restart, log into Client-1 using the local admin credenfials. Open PowerShell from the search bar and test connecfivity by pinging DC-1’s private IP address (e.g., ping 10.0.0.4). To confirm that the DNS seftings are correctly applied, run the command ipconfig /all in PowerShell. The output should display DC-1’s private IP address listed under DNS Servers, confirming that the client is properly configured to communicate with the domain controller.
