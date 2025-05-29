@@ -32,8 +32,8 @@ This guide outlines the post-install configuration of the open-source help desk 
 <h2>Infrastructure Steps</h2>
 
 Step 1: Set Up the Domain Controller in Azure
-<p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<p> 
+<img src="https://i.imgur.com/KPOpTem.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
 Begin by logging into your Microsoft Azure account. If you don’t have one, create a new account. Once logged in, you’ll need to create a resource group, a virtual network with a subnet, and two virtual
