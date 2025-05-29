@@ -37,36 +37,36 @@ Step 1: Set Up the Domain Controller in Azure
 </p>
 <p>
 Begin by logging into your Microsoft Azure account. If you don’t have one, create a new account. Once logged in, you’ll need to create a resource group, a virtual network with a subnet, and two virtual
-machines—in that order. It’s strongly recommended that all resources be created in the same Azure region to ensure compafibility and performance. Start by creating a resource group named labtest. After
+machines—in that order. It’s strongly recommended that all resources be created in the same Azure region to ensure compafibility and performance. Start by creating a resource group named "labtest". After
 naming it, click Review + Create, then Create. It’s crucial that both VMs, the virtual network, and the subnet are placed within this resource group.
 </p>
 <br />
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/XHeclck.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-Next, create a virtual network and subnet named Acfive-Directory-VNet. After putting the name, click Review + Create.
-</p>
-<br />
-
-<p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-<p>
-Now, create your first virtual machine, which will serve as the domain controller. Name this VM DC-1.
+Next, create a virtual network and subnet named "Active-Directory-VNet". After putting the name, click Review + Create.
 </p>
 <br />
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/AKiLBwU.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-Under the Image option, select Windows Server 2022 Datacenter: Azure Edifion – x64 Gen2, and for the Size, choose Standard_D2s_v3 (2 vCPUs, 8 GiB memory). These specificafions are essenfial for proper domain controller funcfionality. Use the following credenfials: Username: labdemo, Password: Vmdemo12345$.
+Now, create your first virtual machine, which will serve as the domain controller. Name this VM "DC-1".
+</p>
+<br />
+
+<p>
+<img src="https://i.imgur.com/WdyHh3Y.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+<p>
+Under the Image option, select Windows Server 2022 Datacenter: Azure Edifion – x64 Gen2, and for the Size, choose Standard_D2s_v3 (2 vCPUs, 8 GiB memory). These specificafions are essenfial for proper domain controller funcfionality. Use the following credenfials: Username: "labdemo", Password: "Vmdemo12345$".
 </p>
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/a9qwNyd.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
 In the Networking section, ensure the VM is connected to the Acfive-Directory-VNet. Then click Review + Create, and finally Create.
