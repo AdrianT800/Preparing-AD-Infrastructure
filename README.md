@@ -11,6 +11,8 @@ This guide provides an overview of the process for setting up a resource group, 
 
 - ### [YouTube: How To Configure osTicket, post-installation](https://www.youtube.com)
 
+- https://github.com/AdrianT800/Preparing-AD-Infrastructure
+
 <h2>Environments and Technologies Used</h2>
 
 - Microsoft Azure (Resources Group, Virtual Machines/Computer, Virtual Machines/Window Server, Virtual Network and Subnet)
