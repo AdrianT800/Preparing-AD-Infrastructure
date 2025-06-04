@@ -11,7 +11,7 @@ This guide provides an overview of the process for setting up a resource group, 
 
 - ### [YouTube: How To Configure osTicket, post-installation](https://www.youtube.com)
 
-- https://github.com/AdrianT800/Preparing-AD-Infrastructure
+- https://drive.google.com/uc?id=1IUzT733tQIFVpdJDch4Rf42OCBUeDBH1&export=download
 
 <h2>Environments and Technologies Used</h2>
 
