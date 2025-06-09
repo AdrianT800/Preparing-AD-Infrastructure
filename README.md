@@ -9,9 +9,8 @@ This guide provides an overview of the process for setting up a resource group, 
 
 <h2>Video Demonstration</h2>
 
-- ### [YouTube: How To Configure osTicket, post-installation](https://www.youtube.com)
+- ### [Google Drive: Preparing Active Directory Infrastructure](https://drive.google.com/file/d/1C12szlKd_w5XQ_bD_jE1e8UosCuA5yRE/view?usp=drive_link)
 
-- https://drive.google.com/uc?id=1IUzT733tQIFVpdJDch4Rf42OCBUeDBH1&export=download
 
 <h2>Environments and Technologies Used</h2>
 
